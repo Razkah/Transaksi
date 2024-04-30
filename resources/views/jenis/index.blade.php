@@ -49,6 +49,15 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormJenis" style="margin-top: 2px;">
                 Tambah Jenis!
             </button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormImportJenis" style="margin-top: 2px;">
+                Import
+            </button>   
+
+            <a href="{{ route('export.jenis') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
+
+             <a href="{{ url('generate/menu') }}" class="btn-danger btn"><span> <i class="bi bi-file-pdf"></i>Export pdf</span></a>
+            
         </div>
         <div class="mb-2">
             @include('jenis.data')

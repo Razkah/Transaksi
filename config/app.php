@@ -158,7 +158,7 @@ return [
     'providers' => ServiceProvider::defaultProviders()->merge([
             
         
-
+        Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,

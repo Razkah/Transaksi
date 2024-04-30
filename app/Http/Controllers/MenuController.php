@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Jenis;
+use App\Imports\MenuImport;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 use Illuminate\Support\Facades\DB;
 use App\Exports\MenuExport;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -23,6 +25,7 @@ class MenuController extends Controller
     {
         $menu = Menu::with('jenis')->get();
         $jenis = Jenis::all();
+        
 
         return view('menu.index', compact('menu', 'jenis'));
     }
@@ -63,17 +66,22 @@ class MenuController extends Controller
     }
 
 
-    public function exportData()
-    {
-        $date = date('Y-m-d');
-        return Excel::download(new MenuExport, $date . 'menu.xlsx');
-    }
+    public function importData(Request $request )
+{
+    Excel::import(new MenuImport, $request->import);
 
-    public function generatePdf()
-    {
-        $menu = Menu::all();
-        $pdf = pdf::loadView('menu.data', compact('menu'));
-        return $pdf->download('menu.pdf');
+    return redirect('menu')->with('success', 'Menu imported successfully!');
+}
+
+public function exportMenu()
+{
+    return Excel::download(new MenuExport, 'menu.xlsx');
+}
+
+    public function downloadPdf(){
+        $data['menu']=Menu::get();
+        $pdf = Pdf::loadView('menu.pdfView',$data);
+        return $pdf->stream('');
     }
 
     /**

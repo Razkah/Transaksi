@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="tableStock">
     <thead class="thead-dark">
         <tr class="text-center">
             <th scope="col">No</th>

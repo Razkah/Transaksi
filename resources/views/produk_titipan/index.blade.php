@@ -47,17 +47,24 @@
                 @endif
 
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormProduk" style="margin-top: 2px;">
-                    Tambah Produk!
-                </button>
+                            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormProduk" style="margin-top: 2px;">
+                Tambah Produk!
+            </button>
 
-                <button class="btn btn-warning"data-toggle="modal" data-target="#form-import"><i class="bi bi-cloud-upload"></i>import excel</button>
+            <!-- Tombol untuk import Excel -->
+            <a href="{{ route('import.produk.titipan') }}" class="btn-dark btn" data-bs-toggle="modal" data-bs-target="#modalFormImport">import</a>
 
-             <a href="{{ url('export/produk_titipan') }}" class="btn-success btn"><span> <i class="bi bi-table"></i>Export
-        excel</span></a>
+            <!-- Tombol untuk export Excel -->
+            <a href="{{ url('export/produk_titipan') }}" class="btn btn-success" style="margin-left: 5px;">
+                <i class="bi bi-table"></i> Export Excel
+            </a>
 
-        <a href="{{ url('generate/produk_titipan') }}" class="btn-danger btn"><span> <i class="bi bi-file-pdf"></i>Export
-            pdf</span></a>
+            <!-- Tombol untuk export PDF -->
+            <a href="{{ url('generate/produk_titipan') }}" class="btn btn-danger" style="margin-left: 5px;">
+                <i class="bi bi-file-pdf"></i> Export PDF
+            </a>
+
 
             </div>
             <div class="mb-2 px-4">

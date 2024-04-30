@@ -50,14 +50,18 @@
                     Tambah Menu!
                 </button>
             
-             <a href="{{ url('/generate-pdf') }}" class="btn-dark btn " target="_blank">Lihat PDF</a>   
+             
 
-             <a href="{{ url('export/menu') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
+             <a href="{{ route('export.menu') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
 
-             <a href="{{ url('generate/menu') }}" class="btn-danger btn"><span> <i class="bi bi-file-pdf"></i>Export pdf</span></a>
+            <a href="{{ route('exportPdf_menu') }}" class="btn btn-danger">
+                <i class="fa fa-file-pdf"></i>
+                    Export PDF
+                </a>
 
-             <button class="btn btn-warning"data-toggle="modal" data-target="#form-import"><i class=" bi bi-cloud-upload"></i>import excel</button>
-
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormImportMenu" style="margin-top: 2px;">
+                    Import
+                </button>
             </div>
             <div class="mb-2">
                 @include('menu.data')
@@ -79,6 +83,9 @@
 
     @push('script')
     <script>
+
+        let table = new DataTable('#tableMenu');
+
         $('#success-alert').fadeTo(500, 500).slideUp(500, function() {
             $('#success-alert').slideUp(500)
         })
@@ -102,6 +109,10 @@
         })
 
         $('#modalFormMenu').on('show.bs.modal', function(e) {
+            
+            // Konstanta adalah suatu nilai yang tetap dan tidak dapat diubah selama eksekusi program.
+            // Konstanta biasanya digunakan untuk menyimpan nilai yang tidak boleh berubah, seperti nilai pi, kunci enkripsi, dan sebagainya.
+
             const btn = $(e.relatedTarget)
             console.log(btn.data('mode'))
             const mode = btn.data('mode')

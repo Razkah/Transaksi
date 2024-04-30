@@ -18,6 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        
         $data['category'] = category::orderBy('created_at', 'ASC')->get();
 
         return view('category.index')->with($data);

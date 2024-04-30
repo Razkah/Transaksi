@@ -3,15 +3,46 @@
 namespace App\Exports;
 
 use App\Models\Menu;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
-class MenuExport implements FromCollection
+class MenuExport implements FromView, WithStyles
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function collection()
+    use Exportable;
+
+    public function view(): View
     {
-        return Menu::all();
+        return view('menu.exportMenu', [
+            'menu' => Menu::all()
+        ]);
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        $headerStyle = [
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+            ],
+            'fill' => [
+                'fillType' => 'solid',
+                'startColor' => ['rgb' => '2C3E50'],
+            ],
+        ];
+
+        // Apply style to header
+        $sheet->getStyle('A1:G1')->applyFromArray($headerStyle);
+
+        // Get total rows
+        $totalRows = count($sheet->toArray());
+
+        // Apply center alignment to data rows
+        $sheet->getStyle('A2:G' . $totalRows)
+            ->getAlignment()
+            ->setHorizontal(Alignment::HORIZONTAL_CENTER);
     }
 }

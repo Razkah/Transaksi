@@ -7,6 +7,11 @@ use App\Models\menu;
 use App\Http\Requests\StorestockRequest;
 use App\Http\Requests\UpdatestockRequest;
 use Illuminate\Support\Facades\DB;
+use App\Exports\StockExport;
+use App\Imports\StockImport;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
@@ -56,6 +61,18 @@ class StockController extends Controller
     public function edit(stock $stock)
     {
         //
+    }
+
+    public function exportStock()
+    {
+        return Excel::download(new StockExport, 'stock.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new StockImport, $request->import);
+
+        return redirect('stock')->with('success', 'stock imported successfully!');
     }
 
     /**

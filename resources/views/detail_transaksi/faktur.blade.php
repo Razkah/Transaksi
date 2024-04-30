@@ -62,8 +62,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="Cafe IndoJaya"
-            >
+            
+            <style>
+                .header img {
+                    width: 100px; /* lebar gambar */
+                    height: 100px; /* tinggi gambar */
+                    border-radius: 50%; /* membuat gambar menjadi lingkaran */
+                }
+            </style>
+            <img src="{{asset('assets')}}/img/cat.png" alt="Cafe IndoJaya"  width="100" height="100" class="rounded-circle">
             <div class="address">
                 Jl. Mockingjay No. 45, 4334<br>
                 Phone: 123-456-7890 | Email: info@cafeindojaya.com

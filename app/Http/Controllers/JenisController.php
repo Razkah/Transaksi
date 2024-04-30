@@ -7,8 +7,10 @@ use App\Models\Category;
 use App\Http\Requests\StoreJenisRequest;
 use App\Http\Requests\UpdateJenisRequest;
 use Illuminate\Support\Facades\DB;
-use App\Exports\Export;
+use App\Exports\JenisExport;
+use App\Imports\JenisImport;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -46,6 +48,19 @@ class JenisController extends Controller
         return redirect('jenis')->with('success', 'Data produk berhasil ditambahkan!');
     }
 
+
+    public function importData(Request $request)
+    {
+        Excel::import(new JenisImport, $request->import);
+
+        return redirect('jenis')->with('success', 'Menu imported successfully!');
+    }
+
+    public function exportJenis()
+{
+    return Excel::download(new JenisExport, 'jenis.xlsx');
+}
+
     /**
      * Display the specified resource.
      */
@@ -62,18 +77,13 @@ class JenisController extends Controller
         //
     }
 
-    public function exportData()
-    {
-        $date = date('Y-m-d');
-        return Excel::download(new JenisExport, $date . 'jenis.xlsx');
-    }
-
     public function generatePdf()
     {
         $jenis = Jenis::all();
         $pdf = pdf::loadView('jenis.data', compact('jenis'));
         return $pdf->download('jenis.pdf');
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -87,9 +97,9 @@ class JenisController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jenis $jeni)
+    public function destroy(Jenis $jenis)
     {
-        $jeni->delete();
+        $jenis->delete();
 
         return redirect('jenis')->with('success', 'Data Berhasil Dihapus!');
     }

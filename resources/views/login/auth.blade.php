@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Coffe Aja</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,7 +51,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <span class="d-none d-lg-block">Coffe Aja</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -64,22 +64,53 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="{{ route('cekLogin')}}" method="post" novalidate>
+                    @csrf
+                    <div class="input-grup mb-3">
+                      <input type="email" class="form-control
+                       @error('email')
+                       is-invalid
+                       @enderror
+                       " placeholder="Email" name="email" id="email" value="{{ old('email') }}">
 
-                    <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
-                      </div>
+                       {{-- <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="bi bi-envelope"></span>
+                        </div>
+                       </div> --}}
+
+                       @error('email')
+                       <div class="invalid-feedback">
+                        {{ $message }}
+                       </div>
+                       @enderror
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                    <div class="input-group mb-3">
+                      <input type="password" class="form-control
+                       @error('password')
+                       is-invalid
+                       @enderror"
+                       placeholder="Password" name="password" value="{{ old('password') }}">
+                       <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="bi bi-lock"></span>
+                        </div>
+                       </div>
+                       @error('password')
+                       <div class="invalid-feedback">
+                        {{ $message }}
+                       </div>
+                       @enderror
                     </div>
+                       @error('nofound')
+                       <div class="row mb-2">
+                        <div class="col-12 text-center text-danger">
+                          {{ $message }}
+                        </div>
+                       </div>
+                       @enderror
+                   
 
                     <div class="col-12">
                       <div class="form-check">

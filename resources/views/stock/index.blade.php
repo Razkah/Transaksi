@@ -49,6 +49,18 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormStock" style="margin-top: 2px;">
                 Tambah Stock!
             </button>
+
+            <a href="{{ route('export.stock') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
+
+            <a href="{{ route('exportPdf_menu') }}" class="btn btn-danger">
+                <i class="fa fa-file-pdf"></i>
+                    Export PDF
+                </a>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormImportStock" style="margin-top: 2px;">
+                    Import
+                </button>
+            </div>
         </div>
         <div class="mb-2">
             @include('stock.data')
@@ -70,6 +82,9 @@
 
 @push('script')
 <script>
+    
+    let table = new DataTable('#tableStock');
+    
     $('#success-alert').fadeTo(500, 500).slideUp(500, function() {
         $('#success-alert').slideUp(500)
     })

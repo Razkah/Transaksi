@@ -50,7 +50,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="{{asset('assets')}}/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
+                <span class="d-none d-lg-block">CoffeAJa</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -215,8 +215,8 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{asset('assets')}}/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <img src="{{asset('assets')}}/img/cat.png" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Razka</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -274,16 +274,19 @@
     </header><!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
+    
     <aside id="sidebar" class="sidebar">
-
+        @if(Auth::user()->level==1)
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="index.html">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li><!-- End Dashboard Nav --> --}}
+
+            <li class="nav-heading">Home</li>
 
             <li class="nav-item">
 
@@ -291,49 +294,15 @@
                     <i class="bi bi-search"></i><span>About</span><i class=""></i>
                 </a>
 
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('contact.index')}}">
+                    <i class="bi bi-envelope"></i><span>Contact</span><i class=""></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
+                <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{ url('grafik')}}">
+                    <i class="bi bi-bar-chart-fill"></i><span>Grafik</span><i class=""></i>
+                </a>
 
-                    <li>
-                        <a href='{{route('category.index')}}'>
-                            <i class="bi bi-circle"></i><span>Category</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href='{{route('jenis.index')}}'>
-                            <i class="bi bi-circle"></i><span>Jenis</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href='{{route('menu.index')}}'>
-                            <i class="bi bi-circle"></i><span>Menu</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='{{route('stock.index')}}'>
-                            <i class="bi bi-circle"></i><span>Stock</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href='{{route('transaksi.index')}}'>
-                            <i class="bi bi-circle"></i><span>Transaksi</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href='{{route('produk_titipan.index')}}'>
-                            <i class="bi bi-circle"></i><span>Produk</span>
-                        </a>
-                    </li>
-
-
-                </ul>
+                
             </li><!-- End Components Nav -->
 
 
@@ -346,27 +315,97 @@
                 </a>
             </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                    <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
-                </a>
             </li><!-- End Contact Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                    <i class="bi bi-card-list"></i>
-                    <span>Register</span>
-                </a>
-            </li><!-- End Register Page Nav -->
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide" draggable="true"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 
-            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('login.index')}}">
-                <i class="bi bi-search"></i><span>Login</span><i class=""></i>
+
+                <li>
+                    <a href='{{route('absensi.index')}}'>
+                        <i class="bi bi-circle"></i><span>Absensi</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href='{{route('category.index')}}'>
+                        <i class="bi bi-circle"></i><span>Category</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href='{{route('jenis.index')}}'>
+                        <i class="bi bi-circle"></i><span>Jenis</span>
+                    </a>
+                </li>
+
+                {{-- <li>
+                    <a href='{{route('menu.index')}}'>
+                        <i class="bi bi-circle"></i><span>Menu</span>
+                    </a>
+                </li> --}}
+
+
+                <li>
+                    <a href='{{route('stock.index')}}'>
+                        <i class="bi bi-circle"></i><span>Stock</span>
+                    </a>
+                </li>
+
+                {{-- <li>
+                    <a href='{{route('transaksi.index')}}'>
+                        <i class="bi bi-circle"></i><span>Transaksi</span>
+                    </a>
+                </li> --}}
+
+                <li>
+                    <a href='{{route('produk_titipan.index')}}'>
+                        <i class="bi bi-circle"></i><span>Produk</span>
+                    </a>
+                </li>
+
+                {{-- <li>
+                    <a href='{{route('pelanggan.index')}}'>
+                        <i class="bi bi-circle"></i><span>Pelanggan </span>
+                    </a>
+                </li> --}}
+            </ul> 
+            
+            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('logout')}}">
+                <i class="bi bi-box-arrow-left"></i><span>Logout</span><i class=""></i>
+            </a>
+        </ul>
+        @endif
+        
+        @if(Auth::user()->level==2)
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-heading">Pages</li>
+{{-- 
+            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('pemesanan_id.index')}}">
+                <i class="bi bi-book"></i><span>Pemesanan</span><i class=""></i>
+            </a> --}}
+
+            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('transaksi.index')}}">
+                <i class="bi bi-cart-fill"></i><span>Transaksi</span><i class=""></i>
             </a>
 
-        </ul>
+            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('menu.index')}}">
+                <i class="bi bi-list"></i><span>Menu</span><i class=""></i>
+            </a>
+
+            </li><!-- End Register Page Nav -->
+
+            <li class="nav-heading">Exit</li>
+            <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('logout')}}">
+                <i class="bi bi-box-arrow-left"></i><span>Logout</span><i class=""></i>
+            </a>
+        </ul>   
+        @endif
 
     </aside><!-- End Sidebar-->
+    
 
     <main id="main" class="main">
 
