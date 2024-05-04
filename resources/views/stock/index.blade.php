@@ -52,10 +52,10 @@
 
             <a href="{{ route('export.stock') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
 
-            <a href="{{ route('exportPdf_menu') }}" class="btn btn-danger">
+            <a href="{{ route('exportPdf_stock') }}" class="btn btn-danger">
                 <i class="fa fa-file-pdf"></i>
-                    Export PDF
-                </a>
+                Export PDF
+            </a>
 
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormImportStock" style="margin-top: 2px;">
                     Import

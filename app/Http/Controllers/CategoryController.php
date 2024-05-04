@@ -6,10 +6,11 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Support\Facades\DB;
-use Exception;
-use Illuminate\Database\QueryException;
-use PDOException;
-
+use App\Exports\CategoryExport;
+use App\Imports\CategoryImport;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -77,5 +78,25 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect('category')->with('success', 'Data Berhasil Dihapus!');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new CategoryExport, $date . 'category.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new CategoryImport, $request->import);
+
+        return redirect('category')->with('success', 'Category imported successfully!');
+    }
+
+    public function downloadPdf()
+    {
+        $data['category'] = Category::get();
+        $pdf = Pdf::loadView('category.pdfView', $data);
+        return $pdf->stream('');
     }
 }

@@ -299,7 +299,7 @@
                 </a>
 
                 <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{ url('grafik')}}">
-                    <i class="bi bi-bar-chart-fill"></i><span>Grafik</span><i class=""></i>
+                    <i class="bi bi-speedometer2"></i><span>Dashboard</span><i class=""></i>
                 </a>
 
                 
@@ -366,11 +366,11 @@
                     </a>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href='{{route('pelanggan.index')}}'>
                         <i class="bi bi-circle"></i><span>Pelanggan </span>
                     </a>
-                </li> --}}
+                </li>
             </ul> 
             
             <a class="nav-link collapsed" data-bs-target="" data-bs-toggle="" href="{{route('logout')}}">

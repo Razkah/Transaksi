@@ -1,5 +1,5 @@
 <table class="table">
-    <thead class="thead-dark">
+    <thead class="thead-dark" id="tablePelanggan">
         <tr class="text-center">
             <th scope="col">No</th>
             <th scope="col">Nama</th>
@@ -22,10 +22,10 @@
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalFormPelanggan" data-mode="edit" data-id="{{ $p->id }}" data-name="{{ $p->nama }}" data-kabehan="{{ json_encode($p) }}">
                     <i class="bi bi-pencil-square"></i>
                 </button>
-                <form action="{{ route('pelanggan.destroy',$p->id) }}" method="post" style="display:inline">
+                <form action="{{ route('pelanggan.destroy',$p->id) }}" method="post" style="display:inline" class="form-delete">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-delete" data-id='$p->id'><i class="bi bi-trash"></i></button>
+                    <button type="button" class="btn btn-danger btn-delete" data-id='$p->id'><i class="bi bi-trash"></i></button>
                 </form>
 
             </td>

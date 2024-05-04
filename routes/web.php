@@ -76,6 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 //pelanggan
 Route::post('import-pelanggan', [PelangganController::class, 'importData']);
+Route::get('export/pelanggan', [PelangganController::class, 'exportData'])->name('export.pelanggan');
+Route::get('generate/pelanggan', [MenuController::class, 'downloadPdf'])->name('exportPdf_pelanggan');
 
 //produk titipan
 Route::get('export/produk_titipan', [ProdukTitipanController::class, 'exportData'])->name('raz');
@@ -96,11 +98,18 @@ Route::put('/absensi/{id}/update-status', [AbsensiController::class, 'updateStat
 //jenis
 Route::post('import-jenis', [JenisController::class, 'importData']);
 Route::get('generate/jenis', [JenisController::class, 'downloadPdf'])->name('exportPdf_jenis');
-Route::get('export/jenis', [JenisController::class, 'exportJenis'])->name('export.jenis');
+Route::get('export/jenis', [JenisController::class, 'exportData'])->name('export.jenis');
+
+//category
+Route::get('export/category', [CategoryController::class, 'exportData'])->name('export.category');
+Route::post('import-category', [CategoryController::class, 'importData']);
+Route::get('generate/category', [CategoryController::class, 'downloadPdf'])->name('exportPdf_category');
+
 
 //stock
 Route::get('export/stock', [StockController::class, 'exportStock'])->name('export.stock');
 Route::post('import-stock', [StockController::class, 'importData']);
+Route::get('generate/stock', [StockController::class, 'downloadPdf'])->name('exportPdf_stock');
 
 Route::get('/export-pdf', [PdfController::class, 'exportPDF'])->name('export.pdf');
 Route::get('/nota/{noFaktur}', [TransaksiController::class, 'faktur']);

@@ -56,7 +56,7 @@ class JenisController extends Controller
         return redirect('jenis')->with('success', 'Menu imported successfully!');
     }
 
-    public function exportJenis()
+    public function exportData()
 {
     return Excel::download(new JenisExport, 'jenis.xlsx');
 }
@@ -77,11 +77,11 @@ class JenisController extends Controller
         //
     }
 
-    public function generatePdf()
+    public function downloadPdf()
     {
-        $jenis = Jenis::all();
-        $pdf = pdf::loadView('jenis.data', compact('jenis'));
-        return $pdf->download('jenis.pdf');
+        $data['jenis'] = Jenis::get();
+        $pdf = Pdf::loadView('jenis.pdfView', $data);
+        return $pdf->stream('');
     }
 
     /**

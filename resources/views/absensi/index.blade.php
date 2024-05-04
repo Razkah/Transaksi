@@ -113,6 +113,7 @@
         focusConfirm: false
     }).then((result) => {
         if (result.isConfirmed) {
+            console.log('tes')
             document.querySelector('.form-delete').submit()
         }
     });

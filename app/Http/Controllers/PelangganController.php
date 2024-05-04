@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PelangganExport as ExportsPelangganExport;
 use App\Models\Pelanggan;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
 use Illuminate\Support\Facades\DB;
 use App\Imports\PelangganImport;
+use App\Exports\PelangganExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -52,11 +55,24 @@ class PelangganController extends Controller
         //
     }
 
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new PelangganExport, $date . 'pelanggan.xlsx');
+    }
+
     public function importData(Request $request)
     {
         Excel::import(new PelangganImport, $request->import);
 
         return redirect('pelanggan')->with('success', 'Pelanggan imported successfully!');
+    }
+
+    public function downloadPdf()
+    {
+        $data['pelanggan'] = Pelanggan::get();
+        $pdf = Pdf::loadView('pelanggan.pdfView', $data);
+        return $pdf->stream('');
     }
 
     /**

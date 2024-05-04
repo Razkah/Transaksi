@@ -135,12 +135,13 @@
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-bar-chart-fill"></i>
-                    
+                    <i class="bi bi-people" style=""></i>
+                    <i class="bi bi-people" style=""></i>
                   </div>
+
                   <div class="ps-3">
                     <p class="card-title">{{ $count_menu }}</p>
-                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    {{-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                   </div>
                 </div>
@@ -175,7 +176,7 @@
                     </div>
                     <div class="ps-3">
                         <h6 id="total_harga">{{ number_format($total_harga), }}</h6>
-                        <span class="text-success small pt-1 fw-bold">15%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                        {{-- <span class="text-success small pt-1 fw-bold">15%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
                          <!-- Ini adalah elemen tempat total harga akan ditampilkan -->
                         <!-- Anda juga dapat menambahkan persentase peningkatan di sini jika diperlukan -->
                     </div>
@@ -213,11 +214,11 @@
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
+                    <i class="bi bi-people" style=""></i>
                   </div>
                   <div class="ps-3">
                     <h6>1244</h6>
-                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                    {{-- <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span> --}}
 
                   </div>
                 </div>

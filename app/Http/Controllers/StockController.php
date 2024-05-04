@@ -94,4 +94,11 @@ class StockController extends Controller
 
         return redirect('stock')->with('success', 'Data Berhasil Dihapus!');
     }
+
+    public function downloadPdf()
+    {
+        $data['stock'] = Stock::get();
+        $pdf = Pdf::loadView('stock.pdfView', $data);
+        return $pdf->stream('');
+    }
 }

@@ -54,9 +54,9 @@
                 Import
             </button>   
 
-            <a href="{{ route('export.jenis') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
+            <a href="{{ url('export/jenis') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
 
-             <a href="{{ url('generate/menu') }}" class="btn-danger btn"><span> <i class="bi bi-file-pdf"></i>Export pdf</span></a>
+             <a href="{{ url('generate/jenis') }}" class="btn-danger btn"><span> <i class="bi bi-file-pdf"></i>Export pdf</span></a>
             
         </div>
         <div class="mb-2">

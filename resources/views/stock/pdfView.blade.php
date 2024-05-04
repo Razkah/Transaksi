@@ -10,26 +10,21 @@
 </head>
 
 <body>
-    <h2 class="text-center p-3 mb-2 rounded-lg">Data Menu</h2>
+    <h2 class="text-center p-3 mb-2 rounded-lg">Data Stock</h2>
     <table class="table table-bordered border-info">
         <thead class="thead-dark">
-            <tr class="text-center">
+            <tr>
                 <th scope="col">No</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Email</th>
-            <th scope="col">No Telepon</th>
-            <th scope="col">Alamat</th>
-    
+            <th scope="col">Nama Menu</th>
+            <th scope="col">Jumlah Stock</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($pelanggan as $p)
-            <tr class="text-center">
-                <td>{{ $i = !isset($i)?$i=1:++$i }}</td>
-                <td>{{ $p->nama }}</td>
-                <td>{{ $p->email }}</td>
-                <td>{{ $p->no_telepon }}</td>
-                <td>{{ $p->alamat }}</td>
+            @foreach ($stock as $s)
+            <tr>
+            <td class="text-center">{{ $i = !isset($i)?$i=1:++$i }}</td>
+            <td class="text-center">{{ $s->menu->nama_menu }}</td>
+            <td class="text-center">{{ $s->jumlah }}</td>
                 </tr>
             @endforeach
 

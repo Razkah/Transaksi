@@ -51,14 +51,16 @@
                 </button>
               
 
-             <a href="{{ url('export/menu') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
+             <a href="{{ url('export/pelanggan') }}" class="btn-success btn "><span> <i class="bi bi-table"></i>Export excel</span></a>
 
-            <a href="{{ route('exportPdf_menu') }}" class="btn btn-danger">
+            <a href="{{ route('exportPdf_pelanggan') }}" class="btn btn-danger">
                 <i class="fa fa-file-pdf"></i>
                     Export PDF
                 </a>
 
-             <button class="btn btn-warning" data-toggle="modal" data-target="#modalFormImportPel"><i class=" bi bi-cloud-upload"></i>import excel</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormImportPelanggan" style="margin-top: 2px;">
+                    Import
+                </button>
             </button>
 
             </div>
@@ -82,6 +84,8 @@
 
     @push('script')
     <script>
+        //  let table = new DataTable('#tablePelanggan');
+
         $('#success-alert').fadeTo(500, 500).slideUp(500, function() {
             $('#success-alert').slideUp(500)
         })
@@ -112,6 +116,7 @@
         focusConfirm: false
     }).then((result) => {
         if (result.isConfirmed) {
+            console.log(document.querySelector('.form-delete'))
             document.querySelector('.form-delete').submit()
         }
     });
@@ -141,14 +146,14 @@
                 modal.find('#email').val(items.email)
                 modal.find('#no_telepon').val(items.no_telepon)
                 modal.find('#alamat').val(items.alamat)
-                modal.find('.modal-body form').attr('action', '{{ url("alamat") }}/' + id)
+                modal.find('.modal-body form').attr('action', '{{ url("pelanggan") }}/' + id)
                 modal.find('#method').html('@method("PUT")')
                 
             } else {
                 modal.find('.modal-title').text('Input Data alamat')
                 modal.find('#alamat').val()
                 modal.find('#method').html('')
-                modal.find('.modal-body form').attr('action', '{{ url("alamat") }}')
+                modal.find('.modal-body form').attr('action', '{{ url("pelanggan") }}')
             }
         })
     </script>
